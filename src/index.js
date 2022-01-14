@@ -3,14 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import { store } from './store';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import HomeworksEdit from './features/homeworks/HomeworksEdit';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/">
+          <Route index element={<App />} />
+          <Route path="modify" element={<HomeworksEdit />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
