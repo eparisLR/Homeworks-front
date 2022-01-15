@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 import './App.css';
-import SideMenu from './components/menu/SideMenu';
+import SideMenu from './components/layout/SideMenu';
 import { Provider } from 'react-redux';
-import { store } from './store';
+import { store } from './store/store';
 import { Outlet } from 'react-router';
 
 

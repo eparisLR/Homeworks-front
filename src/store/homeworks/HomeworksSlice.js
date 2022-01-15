@@ -10,7 +10,6 @@ export const fetchHomeworksAsync = createAsyncThunk(
 
         if(response.status === 200){
             response  = await response.json()
-            console.log(response)
             return response
         } else {
             return Error("No homeworks found")
@@ -35,10 +34,11 @@ export const homeworksSlice = createSlice({
   // Reducer asycnhrone
   extraReducers: (builder) => {
     builder.addCase(fetchHomeworksAsync.pending, state => {
-        console.log('Loading movies...')
+        console.log('Loading homeworks...')
     })
     .addCase(fetchHomeworksAsync.fulfilled, (state, action) => {
         state.homeworks = action.payload
+        console.log('Homeworks loaded')
     })
 }
 })
