@@ -1,9 +1,9 @@
 import { Box } from '@mui/material';
 import './App.css';
-import ListHomeworks from './features/homeworks/ListHomeworks';
-import SideMenu from './features/menu/SideMenu';
+import SideMenu from './components/menu/SideMenu';
 import { Provider } from 'react-redux';
 import { store } from './store';
+import { Outlet } from 'react-router';
 
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
             <SideMenu />
           </Box>
           <Box>
-            <ListHomeworks/>
+            <Outlet/>
           </Box>
         </Box>
       </div>

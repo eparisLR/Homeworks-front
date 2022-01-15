@@ -4,7 +4,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 export const fetchHomeworksAsync = createAsyncThunk(
   'movies/fetch',
   async () => {
-    const url = 'http://0.0.0.0:8080/homeworks'
+    const url = 'https://homeworks-api.herokuapp.com/homeworks'
         const options = { method: 'GET'};
         var response = await fetch(url, options)
 

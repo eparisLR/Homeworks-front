@@ -2,16 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import ListHomeworks from './components/homeworks/ListHomeworks';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import HomeworksEdit from './features/homeworks/HomeworksEdit';
+import HomeworksEdit from './components/homeworks/HomeworksEdit';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/">
-          <Route index element={<App />} />
+        <Route path="/" element={<App />}>
+          <Route index element={<ListHomeworks />} />
           <Route path="modify" element={<HomeworksEdit />} />
         </Route>
       </Routes>

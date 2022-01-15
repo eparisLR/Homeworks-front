@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import HomeworkCard from './HomeworkCard';
-import { fetchHomeworksAsync, selectHomeworks } from './HomeworksSlice';
+import { fetchHomeworksAsync, selectHomeworks } from '../../store/homeworks/HomeworksSlice';
 
 const ListHomeworks = (props) => {
     const dispatch = useDispatch()
