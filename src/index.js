@@ -13,7 +13,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<ListHomeworks />} />
-          <Route path="modify" element={<HomeworksEdit />} />
+          <Route path="modify/:id" element={<HomeworksEdit />} />
         </Route>
       </Routes>
     </BrowserRouter>

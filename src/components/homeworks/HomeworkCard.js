@@ -9,6 +9,7 @@ import { Delete } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import moment from 'moment';
+import { Link } from 'react-router-dom'
 
 const HomeworkCard = (props) => {
     return(
@@ -33,9 +34,11 @@ const HomeworkCard = (props) => {
                     <IconButton color='error'>
                         <Delete />
                     </IconButton>
-                    <IconButton color='primary'>
-                        <EditIcon />
-                    </IconButton>
+                    <Link to={`/modify/${props.homework._id}`}>
+                        <IconButton color='primary'>
+                            <EditIcon />
+                        </IconButton>
+                    </Link>
                 </CardActions>
             </Card>
     )
