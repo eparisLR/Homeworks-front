@@ -43,9 +43,9 @@ const HomeworksEdit = (props) => {
         },
     });
     return(
-        <div>
-          <form onSubmit={formik.handleSubmit} style={{minHeight: '20vh'}}>
-            <Box sx={{ display: 'flex', flexDirection: 'column'}}>
+        <div style={{ display: 'flex', justifyContent: 'center', minWidth: '70vw', flexDirection: 'column'}}>
+          <h2>Edition d'un devoir</h2>
+          <form onSubmit={formik.handleSubmit} style={{minHeight: '30vh',marginRight: '2vw', display: 'flex', flexDirection: 'column', justifyContent: 'space-around'}}>
               <TextField id="work" name="work" type="text" onChange={formik.handleChange} value={formik.values.work} label="Work" variant="outlined" />
               <TextField id="deadline" name="deadline" type="date" onChange={formik.handleChange} value={formik.values.deadline} label="Deadline" variant="outlined" />
             <Box sx={{ display: 'flex', alignItems: 'center'}}>
@@ -60,7 +60,6 @@ const HomeworksEdit = (props) => {
             </Box>
       
             <Button variant="contained"type="submit">Submit</Button>
-            </Box>
         </form>
         </div>
     )
