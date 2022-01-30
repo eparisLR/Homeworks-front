@@ -1,12 +1,26 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import { fetchOneHomeworkAsync, selectHomework } from '../../store/homeworks/HomeworksSlice'
-import TextField from '@mui/material/TextField';
-import moment from 'moment'
-import Input from '@mui/material/Input'
+import { fetchOneHomeworkAsync, selectHomework, updateOneHomeworkAsync } from '../../store/homeworks/HomeworksSlice'
 import { useFormik } from 'formik';
+import { Homework } from '../../utils/HomeworkModel';
+import * as yup from 'yup';
+import { Button } from '@mui/material';
+import { Box } from '@mui/system';
+import { TextField } from '@mui/material';
+import Checkbox from '@mui/material/Checkbox';
 
+
+const EditHomeworkSchema = yup.object().shape({
+  work: yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Required'),
+  deadline: yup.string()
+    .required('Required'),
+  is_done: yup.string()
+    .required('Required'),
+});
 
 const HomeworksEdit = (props) => {
     const dispatch = useDispatch()
@@ -16,36 +30,37 @@ const HomeworksEdit = (props) => {
     useEffect( () => dispatch(fetchOneHomeworkAsync(params.id)), [dispatch, params.id])
 
     const formik = useFormik({
+        validationSchema: EditHomeworkSchema,
+        enableReinitialize: true,
         initialValues: {
-          work: '',
-          date: new Date()
+          work: homework.work,
+          deadline: homework.deadline,
+          is_done: homework.is_done
         },
         onSubmit: values => {
-          alert(JSON.stringify(values, null, 2));
+          const homeworkToUpdate = new Homework( homework._id, homework.work_id, values.work, (new Date(values.deadline)).toISOString().slice(0, 19).replace("Z", ""), values.is_done, homework.tags, homework.user_id)
+          dispatch(updateOneHomeworkAsync(homeworkToUpdate));
         },
     });
     return(
         <div>
-            <p>test {params.id}</p>
-            <p>{homework.work}</p>
-            <form onSubmit={formik.handleSubmit}>
-          <label htmlFor="email">Email Address</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            onChange={formik.handleChange}
-            value={homework.work}
-          />
-          <input
-            id="date"
-            name="date"
-            type="date"
-            onChange={formik.handleChange}
-            value={moment(homework.deadline).format('YYYY-MM-DD')}
-          />
-    
-          <button type="submit">Submit</button>
+          <form onSubmit={formik.handleSubmit} style={{minHeight: '20vh'}}>
+            <Box sx={{ display: 'flex', flexDirection: 'column'}}>
+              <TextField id="work" name="work" type="text" onChange={formik.handleChange} value={formik.values.work} label="Work" variant="outlined" />
+              <TextField id="deadline" name="deadline" type="date" onChange={formik.handleChange} value={formik.values.deadline} label="Deadline" variant="outlined" />
+            <Box sx={{ display: 'flex', alignItems: 'center'}}>
+            <label htmlFor="done">Done </label>
+            <Checkbox
+              id="done"
+              name="is_done"
+              checked={formik.values.is_done}
+              onChange={formik.handleChange}
+              inputProps={{ 'aria-label': 'is_done' }}
+            />
+            </Box>
+      
+            <Button variant="contained"type="submit">Submit</Button>
+            </Box>
         </form>
         </div>
     )

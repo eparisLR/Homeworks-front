@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
+import moment from 'moment'
 
 // Define Async Thunk
 export const fetchHomeworksAsync = createAsyncThunk(
@@ -33,10 +34,27 @@ export const fetchOneHomeworkAsync = createAsyncThunk(
   }
 )
 
+export const updateOneHomeworkAsync = createAsyncThunk(
+  'homework/update',
+  async (homework) => {
+          const url = 'https://homeworks-api.herokuapp.com/homeworks/{id}?homework_id='+ homework.id
+          delete homework.id
+          const options = { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(homework)};
+          var response = await fetch(url, options)
+          
+          if(response.status === 200){
+              response  = await response.json()
+              return response
+          } else {
+              console.log("Fail update")
+          }
+  }
+)
+
 
 const initialState = {
   homeworks: [],
-  homework: {}
+  homework: {work: '', deadline: '', is_done: false}
 }
 
 export const homeworksSlice = createSlice({
@@ -63,8 +81,17 @@ export const homeworksSlice = createSlice({
     })
     .addCase(fetchOneHomeworkAsync.fulfilled, (state, action) => {
       state.homework = action.payload
-      console.log(action.payload)
+      state.homework.deadline = moment(state.homework.deadline).format('YYYY-MM-DD')
       console.log('Homework loaded')
+    })
+
+    builder.addCase(updateOneHomeworkAsync.pending, state => {
+      console.log('Updating homework')
+    })
+    .addCase(updateOneHomeworkAsync.fulfilled, (state,action) => {
+      state.homework = action.payload
+      state.homework.deadline = moment(state.homework.deadline).format('YYYY-MM-DD')
+      console.log('Homework updated')
     })
 
 }})
