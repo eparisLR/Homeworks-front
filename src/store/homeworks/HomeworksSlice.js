@@ -54,7 +54,7 @@ export const updateOneHomeworkAsync = createAsyncThunk(
 
 const initialState = {
   homeworks: [],
-  homework: {work: '', deadline: '', is_done: false}
+  homework: {work: '', deadline: '', is_done: false}  
 }
 
 export const homeworksSlice = createSlice({
