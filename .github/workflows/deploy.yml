@@ -1,7 +1,9 @@
 name: 'Homework-front-pipeline'
 
 on:
-  push: [main]
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -22,9 +24,6 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-
-    - name: Run the tests and generate coverage report
-      run: npm test -- --coverage
 
     - name: Build
       run: npm run build
