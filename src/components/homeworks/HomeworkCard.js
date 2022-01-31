@@ -10,14 +10,26 @@ import { IconButton } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import moment from 'moment';
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { deleteOneHomeworkAsync, updateOneHomeworkAsync } from '../../store/homeworks/HomeworksSlice';
+import { Homework } from '../../utils/HomeworkModel';
 
 const HomeworkCard = (props) => {
+    const dispatch = useDispatch()
+
+    const deleteHomework = (id) => {
+        dispatch(deleteOneHomeworkAsync(id))
+    }
+    const checkHomework = (event) => {
+        const homework = new Homework(props.homework._id, props.homework.work_id, props.homework.work, (new Date(props.homework.deadline)).toISOString().slice(0, 19).replace("Z", "").deadline, event.target.checked, props.homework.tags, props.homework.user_id)
+        dispatch(updateOneHomeworkAsync(homework))
+    }
     return(
             <Card sx={{ minWidth: '20vw', marginTop:'10vh', marginRight: '5vw' }}>
                 <CardContent sx={{display:'flex', flexDirection:'column'}}>
                         <Box sx={{display: 'flex', justifyContent:'flex-start', alignItems:'center'}}>
                             <FormGroup>
-                                <FormControlLabel control={<Checkbox />} label=""/>
+                                <FormControlLabel control={<Checkbox onChange={checkHomework} checked={props.homework.is_done}/>} label=""/>
                             </FormGroup>
                             <Typography>
                                 {props.homework.work}
@@ -31,7 +43,7 @@ const HomeworkCard = (props) => {
                         </Box>
                 </CardContent>
                 <CardActions sx={{display:'flex', justifyContent:'flex-end'}}>
-                    <IconButton color='error'>
+                    <IconButton color='error' onClick={() => {deleteHomework(props.homework._id)}}>
                         <Delete />
                     </IconButton>
                     <Link to={`/modify/${props.homework._id}`}>

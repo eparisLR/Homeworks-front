@@ -13,7 +13,7 @@ const SideMenu = (props) => {
                     <Link to="/">List of homeworks</Link>
                 </Box>
                 <Box>
-                    <Link to="/modify">Add a homework</Link>
+                    <Link to="/new">Add a homework</Link>
                 </Box>
             </Box>
         </div>

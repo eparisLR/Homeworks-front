@@ -38,7 +38,6 @@ export const updateOneHomeworkAsync = createAsyncThunk(
   'homework/update',
   async (homework) => {
           const url = 'https://homeworks-api.herokuapp.com/homeworks/{id}?homework_id='+ homework.id
-          delete homework.id
           const options = { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(homework)};
           var response = await fetch(url, options)
           
@@ -47,6 +46,38 @@ export const updateOneHomeworkAsync = createAsyncThunk(
               return response
           } else {
               console.log("Fail update")
+          }
+  }
+)
+
+export const createOneHomeworkAsync = createAsyncThunk(
+  'homework/create',
+  async (homework) => {
+          const url = 'https://homeworks-api.herokuapp.com/homeworks/'
+          const options = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(homework)};
+          var response = await fetch(url, options)
+          
+          if(response.status === 200){
+              response  = await response.json()
+              return response
+          } else {
+              console.log("Fail create")
+          }
+  }
+)
+
+export const deleteOneHomeworkAsync = createAsyncThunk(
+  'homework/delete',
+  async (id) => {
+    const url = 'https://homeworks-api.herokuapp.com/homeworks/{id}?homework_id='+ id
+    const options = {method: 'DELETE', headers: { 'Content-Type': 'application/json' }}
+    var response = await fetch(url, options)
+          
+          if(response.status === 200){
+              response  = await response.json()
+              return response
+          } else {
+              console.log("Fail delete")
           }
   }
 )
@@ -92,8 +123,28 @@ export const homeworksSlice = createSlice({
       state.homework = action.payload
       state.homework.deadline = moment(state.homework.deadline).format('YYYY-MM-DD')
       console.log('Homework updated')
+      var homeworks = state.homeworks
+      homeworks = homeworks.filter((h) => h._id !== action.payload._id)
+      homeworks.push(action.payload)
+      state.homeworks = homeworks
     })
 
+    builder.addCase(createOneHomeworkAsync.pending, state => {
+      console.log('Creating Homework')
+    })
+    .addCase(createOneHomeworkAsync.fulfilled, (state,action) => {
+      console.log('Homework created', action.payload)
+    })
+
+    builder.addCase(deleteOneHomeworkAsync.pending, state => {
+      console.log('Deleting the Homework')
+    })
+    .addCase(deleteOneHomeworkAsync.fulfilled, (state, action) => {
+      var homeworks = state.homeworks
+      homeworks = homeworks.filter((h) => h._id !== action.payload._id)
+      state.homeworks = homeworks
+      console.log('Homework deleted')
+    })
 }})
 
 export const selectHomeworks = state => state.homeworks.homeworks

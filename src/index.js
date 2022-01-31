@@ -6,6 +6,7 @@ import ListHomeworks from './components/homeworks/ListHomeworks';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomeworksEdit from './components/homeworks/HomeworksEdit';
+import HomeWorkCreate from './components/homeworks/HomeworkCreate';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -14,6 +15,7 @@ ReactDOM.render(
         <Route path="/" element={<App />}>
           <Route index element={<ListHomeworks />} />
           <Route path="modify/:id" element={<HomeworksEdit />} />
+          <Route path="new" element={<HomeWorkCreate />} />
         </Route>
       </Routes>
     </BrowserRouter>
