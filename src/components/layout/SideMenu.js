@@ -10,10 +10,10 @@ const SideMenu = (props) => {
                     <p style={{fontSize: '1.5rem'}}>Emilien</p>
                 </Box>
                 <Box>
-                    <Link to="/">List of homeworks</Link>
+                    <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit', fontSize: '1.4rem'}}>List of homeworks</Link>
                 </Box>
                 <Box>
-                    <Link to="/new">Add a homework</Link>
+                    <Link to="/new" style={{ color: 'inherit', textDecoration: 'inherit', fontSize: '1.4rem'}}>Add a homework</Link>
                 </Box>
             </Box>
         </div>
