@@ -1,7 +1,9 @@
 name: 'Homework-front-pipeline'
 
 on:
-  push: [main]
+  push:
+    branches:
+      - main
 
 jobs:
   build:
