@@ -21,12 +21,14 @@ const ListHomeworks = (props) => {
     
 
     return(
+        <div>
         <Box sx={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(3, 1fr)',
             }}>
             {renderHomeworks}
         </Box>
+        </div>
     )
 }
 

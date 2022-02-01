@@ -1,5 +1,6 @@
 import { Avatar, Box } from "@mui/material"
 import { Link } from "react-router-dom"
+import LoginButton from "../authentication/LoginButton"
 
 const SideMenu = (props) => {
     return(
@@ -13,6 +14,7 @@ const SideMenu = (props) => {
                     <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit', fontSize: '1.4rem'}}>List of homeworks</Link>
                 </Box>
                 <Box>
+                <LoginButton/>
                     <Link to="/new" style={{ color: 'inherit', textDecoration: 'inherit', fontSize: '1.4rem'}}>Add a homework</Link>
                 </Box>
             </Box>
