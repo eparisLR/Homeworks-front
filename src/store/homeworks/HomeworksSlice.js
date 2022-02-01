@@ -5,7 +5,7 @@ import moment from 'moment'
 export const fetchHomeworksAsync = createAsyncThunk(
   'homeworks/fetch',
   async () => {
-    const url = 'https://homeworks-api.herokuapp.com/homeworks'
+    const url = process.env.REACT_APP_API_URL
         const options = { method: 'GET'};
         var response = await fetch(url, options)
 
@@ -21,7 +21,7 @@ export const fetchHomeworksAsync = createAsyncThunk(
 export const fetchOneHomeworkAsync = createAsyncThunk(
   'homework/fetch',
   async (id) => {
-    const url = 'https://homeworks-api.herokuapp.com/homeworks/{id}?homework_id='+ id
+    const url = process.env.REACT_APP_API_URL + '{id}?homework_id=' + id
         const options = { method: 'GET'};
         var response = await fetch(url, options)
 
@@ -37,7 +37,7 @@ export const fetchOneHomeworkAsync = createAsyncThunk(
 export const updateOneHomeworkAsync = createAsyncThunk(
   'homework/update',
   async (homework) => {
-          const url = 'https://homeworks-api.herokuapp.com/homeworks/{id}?homework_id='+ homework.id
+          const url = process.env.REACT_APP_API_URL + '{id}?homework_id='+ homework.id
           const options = { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(homework)};
           var response = await fetch(url, options)
           
@@ -53,7 +53,7 @@ export const updateOneHomeworkAsync = createAsyncThunk(
 export const createOneHomeworkAsync = createAsyncThunk(
   'homework/create',
   async (homework) => {
-          const url = 'https://homeworks-api.herokuapp.com/homeworks/'
+          const url = process.env.REACT_APP_API_URL
           const options = { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(homework)};
           var response = await fetch(url, options)
           
@@ -69,7 +69,7 @@ export const createOneHomeworkAsync = createAsyncThunk(
 export const deleteOneHomeworkAsync = createAsyncThunk(
   'homework/delete',
   async (id) => {
-    const url = 'https://homeworks-api.herokuapp.com/homeworks/{id}?homework_id='+ id
+    const url = process.env.REACT_APP_API_URL + '{id}?homework_id='+ id
     const options = {method: 'DELETE', headers: { 'Content-Type': 'application/json' }}
     var response = await fetch(url, options)
           
