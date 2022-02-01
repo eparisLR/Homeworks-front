@@ -14,15 +14,16 @@ import ProtectedRoute from './auth/ProtectedRoute';
 ReactDOM.render(
     <BrowserRouter>
       <Auth0ProviderWithHistory>
-      <Routes>
-        <Route path="/" element={<LoginPage />}>
-          <ProtectedRoute path="homeworks" element={<App />}>
-            <ProtectedRoute index element={<ListHomeworks />} />
-            <ProtectedRoute path="/modify/:id" element={<HomeworksEdit />} />
-            <ProtectedRoute path="/new" element={<HomeWorkCreate />} />
-          </ProtectedRoute>
+        <Routes>
+        <Route path="/" element={<LoginPage />}/>
+        <Route path="homeworks" element={<ProtectedRoute />}>
+          <Route path="/homeworks" element={<App />}>
+            <Route index element={<ListHomeworks />} />
+            <Route path="new" element={<HomeWorkCreate />} />
+            <Route path="modify/:id" element={<HomeworksEdit/>} />
+          </Route>
         </Route>
-      </Routes>
+        </Routes>
       </Auth0ProviderWithHistory>
     </BrowserRouter>,
   document.getElementById('root')
