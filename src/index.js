@@ -7,24 +7,24 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomeworksEdit from './components/homeworks/HomeworksEdit';
 import HomeWorkCreate from './components/homeworks/HomeworkCreate';
-import { Auth0Provider } from '@auth0/auth0-react';
+import Auth0ProviderWithHistory from './auth/Auth0ProviderWithHistory';
+import LoginPage from './components/authentication/LoginPage';
+import ProtectedRoute from './auth/ProtectedRoute';
 
 ReactDOM.render(
-    <Auth0Provider
-    domain={process.env.REACT_APP_AUTH_DOMAIN}
-    clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
-    redirectUri={window.location.origin}
-  >
     <BrowserRouter>
+      <Auth0ProviderWithHistory>
       <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<ListHomeworks />} />
-          <Route path="modify/:id" element={<HomeworksEdit />} />
-          <Route path="new" element={<HomeWorkCreate />} />
+        <Route path="/" element={<LoginPage />}>
+          <ProtectedRoute path="/homeworks" element={<App />}>
+            <ProtectedRoute index element={<ListHomeworks />} />
+            <ProtectedRoute path="modify/:id" element={<HomeworksEdit />} />
+            <ProtectedRoute path="new" element={<HomeWorkCreate />} />
+          </ProtectedRoute>
         </Route>
       </Routes>
-    </BrowserRouter>
-    </Auth0Provider>,
+      </Auth0ProviderWithHistory>
+    </BrowserRouter>,
   document.getElementById('root')
 );
 
