@@ -6,10 +6,10 @@ const Auth0ProviderWithHistory = ({ children }) => {
   const domain = process.env.REACT_APP_AUTH_DOMAIN;
   const clientId = process.env.REACT_APP_AUTH_CLIENT_ID;
 
-  const history = useNavigate()
+  const navigate = useNavigate()
 
   const onRedirectCallback = (appState) => {
-    history.push(appState?.returnTo || window.location.pathname);
+    navigate(appState?.returnTo || window.location.pathname);
   };
 
   return (

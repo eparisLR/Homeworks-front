@@ -7,9 +7,9 @@ const LoginPage = (props) => {
     const { user, isAuthenticated } = useAuth0()
     console.log(isAuthenticated)
 
-    const history = useNavigate()
-    history.push('/')
-    
+    const navigate = useNavigate()
+    navigate("/")
+
     return(
         <div style= {{ width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <AuthenticationButton />
