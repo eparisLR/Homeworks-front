@@ -8,11 +8,11 @@ const LoginPage = (props) => {
     console.log(isAuthenticated)
 
     const navigate = useNavigate()
-    navigate("/")
 
     return(
         <div style= {{ width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <AuthenticationButton />
+            <button onClick={() => {navigate("/")}}>Home</button>
             {isAuthenticated && (
                 <div>
                     <img src={user.picture} alt={user.name}/>
