@@ -16,12 +16,10 @@ ReactDOM.render(
       <Auth0ProviderWithHistory>
         <Routes>
         <Route path="/" element={<LoginPage />}/>
-        <Route path="homeworks" element={<ProtectedRoute />}>
-          <Route path="home" element={<App />}>
+        <Route path="homeworks" element={<App />}>
             <Route index element={<ListHomeworks />} />
             <Route path="new" element={<HomeWorkCreate />} />
             <Route path="modify/:id" element={<HomeworksEdit/>} />
-          </Route>
         </Route>
         </Routes>
       </Auth0ProviderWithHistory>
