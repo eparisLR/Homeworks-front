@@ -1,11 +1,15 @@
 import AuthenticationButton from "./AuthenticationButton";
 import { useAuth0 } from "@auth0/auth0-react"
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router';
+
 const LoginPage = (props) => {
     const { user, isAuthenticated } = useAuth0()
     console.log(isAuthenticated)
 
-    props.history.push('/')
+    const history = useNavigate()
+    history.push('/')
+    
     return(
         <div style= {{ width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <AuthenticationButton />
