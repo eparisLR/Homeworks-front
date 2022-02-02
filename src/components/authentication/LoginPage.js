@@ -1,7 +1,7 @@
 import AuthenticationButton from "./AuthenticationButton";
 import { useAuth0 } from "@auth0/auth0-react"
 const LoginPage = (props) => {
-    const { user, isAuthenticated, isLoading } = useAuth0()
+    const { user, isAuthenticated } = useAuth0()
     return(
         isAuthenticated && (
             <div style= {{ width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>

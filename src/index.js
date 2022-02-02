@@ -9,7 +9,6 @@ import HomeworksEdit from './components/homeworks/HomeworksEdit';
 import HomeWorkCreate from './components/homeworks/HomeworkCreate';
 import Auth0ProviderWithHistory from './auth/Auth0ProviderWithHistory';
 import LoginPage from './components/authentication/LoginPage';
-import ProtectedRoute from './auth/ProtectedRoute';
 
 ReactDOM.render(
     <BrowserRouter>
