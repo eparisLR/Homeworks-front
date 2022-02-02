@@ -17,7 +17,7 @@ ReactDOM.render(
         <Routes>
         <Route path="/" element={<LoginPage />}/>
         <Route path="homeworks" element={<ProtectedRoute />}>
-          <Route path="/homeworks" element={<App />}>
+          <Route path="home" element={<App />}>
             <Route index element={<ListHomeworks />} />
             <Route path="new" element={<HomeWorkCreate />} />
             <Route path="modify/:id" element={<HomeworksEdit/>} />
