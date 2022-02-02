@@ -4,14 +4,16 @@ import { Link } from "react-router-dom";
 const LoginPage = (props) => {
     const { user, isAuthenticated } = useAuth0()
     return(
-        isAuthenticated && (
-            <div style= {{ width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                <img src={user.picture} alt={user.name}/>
-                <p>{user.name}</p>
-                <Link to="/homeworks"> DashBoard </Link>
+        <div>
             <AuthenticationButton />
-            </div>
-        )
+            {isAuthenticated && (
+                <div style= {{ width: '100vw', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                    <img src={user.picture} alt={user.name}/>
+                    <p>{user.name}</p>
+                    <Link to="/homeworks"> DashBoard </Link>
+                </div>
+            )}
+        </div>
     )
 }
 
