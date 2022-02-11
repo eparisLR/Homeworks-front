@@ -2,6 +2,7 @@ import AuthenticationButton from "./AuthenticationButton";
 import { useAuth0 } from "@auth0/auth0-react"
 import { Link } from "react-router-dom";
 import background from '../../assets/background-login.jpg'
+import { Button } from "@mui/material";
 
 const LoginPage = (props) => {
     const { user, isAuthenticated } = useAuth0()
@@ -17,9 +18,11 @@ const LoginPage = (props) => {
                     </div>
                 )}
                 {isAuthenticated && (
-                <div>
+                <div style={{display: 'flex', flexDirection: 'column'}}>
                     <img src={user.picture} alt={user.name} style={{borderRadius: '20px'}}/>
-                    <Link to="/homeworks" style={{ color: 'inherit', textDecoration: 'inherit'}}> La liste de vos travaux </Link>
+                    <Link to="/homeworks" style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        <Button variant="contained">Liste de vos travaux</Button>
+                    </Link>
                 </div>
                 )}
             </div>
