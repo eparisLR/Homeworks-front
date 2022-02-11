@@ -18,8 +18,7 @@ const LoginPage = (props) => {
                 {isAuthenticated && (
                 <div>
                     <img src={user.picture} alt={user.name} style={{borderRadius: '20px'}}/>
-                    <p>{user.name}</p>
-                    <Link to="/homeworks" style={{ color: 'inherit', textDecoration: 'inherit', fontSize: '1.4rem'}}> La liste de vos travaux </Link>
+                    <Link to="/homeworks" style={{ color: 'inherit', textDecoration: 'inherit'}}> La liste de vos travaux </Link>
                 </div>
                 )}
                 <AuthenticationButton/>
