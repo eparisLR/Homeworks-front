@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
 import LogoutButton from "../authentication/LogoutButton"
 
+
 const SideMenu = (props) => {
     const { user, isAuthenticated } = useAuth0()
 
@@ -14,10 +15,10 @@ const SideMenu = (props) => {
                     <p style={{fontSize: '1.5rem'}}>{user.name}</p> 
                 </Box>
                 <Box>
-                    <Link to="/homeworks" style={{ color: 'inherit', textDecoration: 'inherit', fontSize: '1.4rem'}}>List of homeworks</Link>
+                    <Link to="/homeworks" style={{ color: 'inherit', textDecoration: 'inherit', fontSize: '1.4rem'}}>TODO List</Link>
                 </Box>
                 <Box>
-                    <Link to="/homeworks/new" style={{ color: 'inherit', textDecoration: 'inherit', fontSize: '1.4rem'}}>Add a homework</Link>
+                    <Link to="/homeworks/new" style={{ color: 'inherit', textDecoration: 'inherit', fontSize: '1.4rem'}}>Ajouter une tâche</Link>
                 </Box>
                 {isAuthenticated &&(
                     <div>

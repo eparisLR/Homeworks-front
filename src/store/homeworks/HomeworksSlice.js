@@ -85,7 +85,7 @@ export const deleteOneHomeworkAsync = createAsyncThunk(
 
 const initialState = {
   homeworks: [],
-  homework: {work: '', deadline: '', is_done: false}  
+  homework: {work: '', deadline: '', is_done: false, tags: []}  
 }
 
 export const homeworksSlice = createSlice({
