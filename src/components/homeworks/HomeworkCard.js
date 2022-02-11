@@ -53,7 +53,7 @@ const HomeworkCard = (props) => {
                     <IconButton color='error' onClick={() => {deleteHomework(props.homework._id)}}>
                         <Delete />
                     </IconButton>
-                    <Link to={`/modify/${props.homework._id}`}>
+                    <Link to={`/homeworks/modify/${props.homework._id}`}>
                         <IconButton color='primary'>
                             <EditIcon />
                         </IconButton>
