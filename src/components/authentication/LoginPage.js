@@ -13,6 +13,7 @@ const LoginPage = (props) => {
                     <div>
                         <h2>Connectez-vous</h2>
                         <p>Veuillez vous connectez pour accéder à la liste de vos travaux</p>
+                        <AuthenticationButton/>
                     </div>
                 )}
                 {isAuthenticated && (
@@ -21,7 +22,6 @@ const LoginPage = (props) => {
                     <Link to="/homeworks" style={{ color: 'inherit', textDecoration: 'inherit'}}> La liste de vos travaux </Link>
                 </div>
                 )}
-                <AuthenticationButton/>
             </div>
         </div>
     )
