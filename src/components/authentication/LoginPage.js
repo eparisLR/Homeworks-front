@@ -18,7 +18,7 @@ const LoginPage = (props) => {
                     </div>
                 )}
                 {isAuthenticated && (
-                <div style={{display: 'flex', flexDirection: 'column'}}>
+                <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-around'}}>
                     <img src={user.picture} alt={user.name} style={{borderRadius: '20px'}}/>
                     <Link to="/homeworks" style={{ color: 'inherit', textDecoration: 'inherit'}}>
                         <Button variant="contained">Liste de vos travaux</Button>
