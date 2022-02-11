@@ -15,14 +15,14 @@ const LoginPage = (props) => {
                         <p>Veuillez vous connectez pour accéder à la liste de vos travaux</p>
                     </div>
                 )}
-                <AuthenticationButton/>
                 {isAuthenticated && (
                 <div>
-                    <img src={user.picture} alt={user.name}/>
+                    <img src={user.picture} alt={user.name} style={{borderRadius: '20px'}}/>
                     <p>{user.name}</p>
-                    <Link to="/homeworks"> DashBoard </Link>
+                    <Link to="/homeworks" style={{ color: 'inherit', textDecoration: 'inherit', fontSize: '1.4rem'}}> La liste de vos travaux </Link>
                 </div>
-            )}
+                )}
+                <AuthenticationButton/>
             </div>
         </div>
     )
